@@ -11,9 +11,7 @@ import { DELAY_IN_MS, SHORT_DELAY_IN_MS } from "../../constants/delays";
 export const StringComponent: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputText, setInputText] = useState<string>("");
-  const [reverseArr, setReverseArr] = useState<Array<[string, ElementStates]>>(
-    []
-  );
+  const [reverseArr, setReverseArr] = useState<Array<[string, ElementStates]>>([]);
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
