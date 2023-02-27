@@ -28,9 +28,10 @@ export const StackPage: React.FC = () => {
     await sleep(SHORT_DELAY_IN_MS);
     setIsLoading(false);
   };
-  const handlerClickDel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handlerClickDel = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     e.preventDefault();
+    await sleep(SHORT_DELAY_IN_MS);
     stack.pop();
     setStack(stack);
     setStackArr([...stack.innerArr()]);
