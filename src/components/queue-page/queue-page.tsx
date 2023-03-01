@@ -14,7 +14,9 @@ export const QueuePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputLetter, setInputLetter] = useState<string>("");
   const [queue, setQueue] = useState<Queue<string>>(new Queue(7));
-  const [queueArr, setQueueArr] = useState<Array<string|null>>([...queue.innerArr()]);
+  const [queueArr, setQueueArr] = useState<Array<string | null>>([
+    ...queue.innerArr(),
+  ]);
   const [changingEl, setChangingEl] = useState<number>(-1);
 
   const handlerClickAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -70,19 +72,26 @@ export const QueuePage: React.FC = () => {
           onClick={handlerClickAdd}
           text="Добавить"
           isLoader={isLoading}
+          disabled={inputLetter.length === 0}
         />
-        <Button onClick={handlerClickDel} text="Удалить" isLoader={isLoading} />
+        <Button
+          onClick={handlerClickDel}
+          text="Удалить"
+          isLoader={isLoading}
+          disabled={queue.isEmpty()}
+        />
         <Button
           onClick={handlerClickClear}
           text="Очистить"
           isLoader={isLoading}
           extraClass={styles.clearButton}
+          disabled={queue.isEmpty()}
         />
       </div>
       <div className={styles.circleBox}>
         {queueArr.map((el, index) => (
           <Circle
-            letter={typeof el === 'string'? el : ""}
+            letter={typeof el === "string" ? el : ""}
             index={index}
             extraClass="mr-8"
             key={index}

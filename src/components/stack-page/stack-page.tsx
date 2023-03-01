@@ -15,7 +15,7 @@ export const StackPage: React.FC = () => {
   const [inputLetter, setInputLetter] = useState<string>("");
   const [stack, setStack] = useState<Stack<string>>(new Stack());
   const [stackArr, setStackArr] = useState<Array<string>>([]);
-
+  
   const handlerClickAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     e.preventDefault();
@@ -45,7 +45,8 @@ export const StackPage: React.FC = () => {
     setIsLoading(false);
   };
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputLetter(e.target.value);
+    let inputValue = e.target.value;
+    setInputLetter(inputValue);
   };
 
   return (
@@ -64,13 +65,20 @@ export const StackPage: React.FC = () => {
           onClick={handlerClickAdd}
           text="Добавить"
           isLoader={isLoading}
+          disabled={inputLetter.length === 0}
         />
-        <Button onClick={handlerClickDel} text="Удалить" isLoader={isLoading} />
+        <Button
+          onClick={handlerClickDel}
+          text="Удалить"
+          isLoader={isLoading}
+          disabled={stackArr.length === 0}
+        />
         <Button
           onClick={handlerClickClear}
           text="Очистить"
           isLoader={isLoading}
           extraClass={styles.clearButton}
+          disabled={stackArr.length === 0}
         />
       </div>
       <div className={styles.circleBox}>

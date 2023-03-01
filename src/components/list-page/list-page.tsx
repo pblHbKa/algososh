@@ -147,22 +147,26 @@ export const ListPage: React.FC = () => {
           onClick={handlerClickAddHead}
           text="Добавить в head"
           isLoader={isLoading}
+          disabled={inputLetter.length === 0}
         />
         <Button
           onClick={handlerClickAddTail}
           text="Добавить в tail"
           isLoader={isLoading}
+          disabled={inputLetter.length === 0}
         />
         <Button
           onClick={handlerClickDelHead}
           text="Удалить из head"
           isLoader={isLoading}
           extraClass={styles.clearButton}
+          disabled={listArr.length === 0}
         />
         <Button
           onClick={handlerClickDelTail}
           text="Удалить из tail"
           isLoader={isLoading}
+          disabled={listArr.length === 0}
         />
       </div>
       <div className={styles.contentBox}>
@@ -179,12 +183,14 @@ export const ListPage: React.FC = () => {
           text="Добавить по индексу"
           isLoader={isLoading}
           extraClass={styles.bigButton}
+          disabled={inputLetter.length === 0 || inputIndex > listArr.length - 1 || inputIndex < 0}
         />
         <Button
           onClick={handlerClickDelIndex}
           text="Удалить по индексу"
           isLoader={isLoading}
           extraClass={styles.bigButton2}
+          disabled={inputLetter.length === 0 || inputIndex > listArr.length - 1 || inputIndex < 0}
         />
       </div>
       <div className={styles.circleBox}>

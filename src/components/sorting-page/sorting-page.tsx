@@ -143,6 +143,7 @@ export const SortingPage: React.FC = () => {
           isLoader={isLoadingAsc}
           extraClass={styles.button}
           sorting={Direction.Ascending}
+          disabled={sortingArr.length === 0}
         />
         <Button
           onClick={handlerClickSortDes}
@@ -150,6 +151,7 @@ export const SortingPage: React.FC = () => {
           isLoader={isLoadingDes}
           extraClass={styles.button}
           sorting={Direction.Descending}
+          disabled={sortingArr.length === 0}
         />
         <Button
           onClick={handlerClickNewArr}

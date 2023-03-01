@@ -60,6 +60,7 @@ export const FibonacciPage: React.FC = () => {
           onClick={handlerClick}
           text="Сгенерировать"
           isLoader={isLoading}
+          disabled={!(inputNumber > 0 && inputNumber < 20)}
         />
       </div>
       {fibonacciArr.length > 0 && (
