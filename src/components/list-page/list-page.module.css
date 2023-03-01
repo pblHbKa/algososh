@@ -1,0 +1,31 @@
+.contentBox {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 204px repeat(4, 1fr);
+    width: 952px;
+    margin: 0 auto;
+    margin-top: 12px;
+}
+
+.circleBox {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 90px;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.bigButton {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.bigButton2 {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
+.circleUl {
+    display: inline-flex;
+    list-style-image: url("../../images/stroke.svg");
+}
