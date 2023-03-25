@@ -11,12 +11,11 @@ import { DELAY_IN_MS, SHORT_DELAY_IN_MS } from "../../constants/delays";
 export const StringComponent: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputText, setInputText] = useState<string>("");
-  const [reverseArr, setReverseArr] = useState<Array<[string, ElementStates]>>(
-    []
-  );
-
+  const [reverseArr, setReverseArr] = useState<Array<[string, ElementStates]>>([]);
+  
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
+    let inputValue = e.target.value;
+    setInputText(inputValue);
   };
 
   const reverse = async () => {
@@ -57,7 +56,7 @@ export const StringComponent: React.FC = () => {
           value={inputText}
           onChange={handlerChange}
         ></Input>
-        <Button onClick={handlerClick} text="Развернуть" isLoader={isLoading} />
+        <Button onClick={handlerClick} text="Развернуть" isLoader={isLoading} disabled={!(inputText.length > 1)}/>
       </div>
       {reverseArr.length > 0 && (
         <div className={styles.circleBox}>
