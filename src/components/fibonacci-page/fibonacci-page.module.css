@@ -1,0 +1,12 @@
+.contentBox {
+    width: 522px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.circleBox {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 48px;
+    justify-content: center;
+}
