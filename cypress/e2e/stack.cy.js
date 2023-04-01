@@ -1,6 +1,6 @@
 import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
 
-describe("страница c последовательностью Фибоначчи работает правильно", function () {
+describe("страница cо стеком работает правильно", function () {
   beforeEach(() => {
     cy.visit(APP_ADDRESS + "/stack");
   });
