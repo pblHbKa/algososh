@@ -1,6 +1,8 @@
+import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
+
 describe("страница c последовательностью Фибоначчи работает правильно", function () {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/fibonacci");
+    cy.visit(APP_ADDRESS + "/fibonacci");
   });
 
   it("кнопка запуска недоступна при отсутствии текста", function () {
@@ -18,7 +20,7 @@ describe("страница c последовательностью Фибона
 
     cy.wait(550 * length);
 
-    cy.get('div[class^="circle_circle"]').then((circles) => {
+    cy.get(CIRCLE_SELECTOR).then((circles) => {
       expect(circles[0]).to.have.text(String(prev1));
       expect(circles[1]).to.have.text(String(prev2));
       for (let i = 2; i <= length; i++) {

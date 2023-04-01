@@ -1,6 +1,8 @@
+import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
+
 describe("страница разворота строки работает правильно", function () {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/recursion");
+    cy.visit(APP_ADDRESS + "/recursion");
   });
 
   it("кнопка запуска недоступна при отсутствии текста", function () {
@@ -16,12 +18,12 @@ describe("страница разворота строки работает пр
     cy.contains("Развернуть").click();
 
     for (let i = 0, j = textLength - 1; i <= j; i++, j--) {
-      cy.get('div[class^="circle_circle"]').then((circles) => {
+      cy.get(CIRCLE_SELECTOR).then((circles) => {
         expect(circles[i].className).to.match(/circle_changing/);
         expect(circles[j].className).to.match(/circle_changing/);
       });
       cy.wait(1050);
-      cy.get('div[class^="circle_circle"]').then((circles) => {
+      cy.get(CIRCLE_SELECTOR).then((circles) => {
         expect(circles[i].className).to.match(/circle_modified/);
         expect(circles[j].className).to.match(/circle_modified/);
       });
