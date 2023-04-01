@@ -48,7 +48,8 @@ export const QueuePage: React.FC = () => {
   const handlerClickClear = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     e.preventDefault();
-    setQueue(new Queue<string>(7));
+    queue.clear();
+    setQueue(queue);
     setQueueArr([...queue.innerArr()]);
     setIsLoading(false);
   };

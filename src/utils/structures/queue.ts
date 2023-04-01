@@ -44,6 +44,13 @@ export class Queue<T> implements IQueue<T> {
         return this.container[this.head];
     };
 
+    clear = () => {
+        this.container = Array(this.size);
+        this.head = 0;
+        this.tail = 0;
+        this.length = 0;
+    };
+
     isEmpty = () => this.length === 0;
 
     innerArr = (): Array<T | null> => this.container;

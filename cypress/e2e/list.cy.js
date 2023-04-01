@@ -1,4 +1,4 @@
-import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
+import { APP_ADDRESS, CIRCLE_CONTENT_SELECTOR, CIRCLE_SELECTOR } from "../utils/constants";
 
 describe("страница cо списком работает правильно", function () {
   beforeEach(() => {
@@ -21,10 +21,10 @@ describe("страница cо списком работает правильн�
       expect(circles[2]).to.have.text("8");
       expect(circles[3]).to.have.text("1");
     });
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
       expect($div).to.have.text("head");
     });
-    cy.get('div[class^="circle_content"]').eq(3).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(3).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
   });
@@ -34,7 +34,7 @@ describe("страница cо списком работает правильн�
     cy.get("input").eq(0).type(el);
     cy.contains("Добавить в head").click();
 
-    cy.get('div[class^="circle_content"]').then((circles) => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).then((circles) => {
       expect(circles.children().eq(0)).to.have.text(el);
     });
 
@@ -45,7 +45,7 @@ describe("страница cо списком работает правильн�
       expect(circles[0]).to.have.text(el);
     });
     
-    cy.get('div[class^="circle_content"]').then((circles) => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).then((circles) => {
       expect(circles.children().eq(0)).to.have.text("head");
     });
   });
@@ -56,7 +56,7 @@ describe("страница cо списком работает правильн�
     cy.get("input").eq(0).type(el);
     cy.contains("Добавить в tail").click();
 
-    cy.get('div[class^="circle_content"]').eq(initSize-1).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(initSize-1).children().eq(0).should($div => {
       expect($div).to.have.text(el);
     });
 
@@ -67,7 +67,7 @@ describe("страница cо списком работает правильн�
       expect(circles[initSize]).to.have.text(el);
     });
     
-    cy.get('div[class^="circle_content"]').eq(initSize).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(initSize).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
   });
@@ -79,7 +79,7 @@ describe("страница cо списком работает правильн�
     cy.get("input").eq(1).type(index);
     cy.contains("Добавить по индексу").click();
 
-    cy.get('div[class^="circle_content"]').eq(index).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(index).children().eq(0).should($div => {
       expect($div).to.have.text(el);
     });
 
@@ -101,7 +101,7 @@ describe("страница cо списком работает правильн�
 
     cy.wait(1000);
 
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(3).should($div => {
       expect($div).to.have.text("0");
     });
 
@@ -111,7 +111,7 @@ describe("страница cо списком работает правильн�
       expect(circles[0]).to.have.text("34");
     });
     
-    cy.get('div[class^="circle_content"]').then((circles) => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).then((circles) => {
       expect(circles.children().eq(0)).to.have.text("head");
     });
   });
@@ -125,13 +125,13 @@ describe("страница cо списком работает правильн�
 
     cy.wait(1000);
 
-    cy.get('div[class^="circle_content"]').eq(3).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(3).children().eq(3).should($div => {
       expect($div).to.have.text("1");
     });
 
     cy.wait(1000);
     
-    cy.get('div[class^="circle_content"]').eq(2).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(2).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
   });
@@ -148,7 +148,7 @@ describe("страница cо списком работает правильн�
       expect(circles[index].className).to.match(/circle_changing/);
     });
 
-    cy.get('div[class^="circle_content"]').eq(index).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(index).should($div => {
       expect($div.children().eq(3)).to.have.text("34");
     });
 

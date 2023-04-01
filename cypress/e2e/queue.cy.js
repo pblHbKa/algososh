@@ -1,4 +1,4 @@
-import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
+import { APP_ADDRESS, CIRCLE_CONTENT_SELECTOR, CIRCLE_SELECTOR } from "../utils/constants";
 
 describe("страница c очередью работает правильно", function () {
   beforeEach(() => {
@@ -19,10 +19,10 @@ describe("страница c очередью работает правильн�
       expect(circles[0].className).to.match(/circle_changing/);
       expect(circles[0]).to.have.text(1);
     });
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
       expect($div).to.have.text("head");
     });
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
     cy.wait(500);
@@ -42,10 +42,10 @@ describe("страница c очередью работает правильн�
     cy.get(CIRCLE_SELECTOR).then((circles) => {
       expect(circles[1].className).to.match(/circle_default/);
     });
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
       expect($div).to.have.text("head");
     });
-    cy.get('div[class^="circle_content"]').eq(1).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(1).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
   });
@@ -61,10 +61,10 @@ describe("страница c очередью работает правильн�
     cy.get(CIRCLE_SELECTOR).then((circles) => {
       expect(circles[1].className).to.match(/circle_default/);
     });
-    cy.get('div[class^="circle_content"]').eq(1).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(1).children().eq(0).should($div => {
       expect($div).to.have.text("head");
     });
-    cy.get('div[class^="circle_content"]').eq(1).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(1).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
   });
@@ -79,10 +79,10 @@ describe("страница c очередью работает правильн�
     cy.contains("Очистить").click();
     cy.wait(500);
 
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(0).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
       expect($div).to.have.text("head");
     });
-    cy.get('div[class^="circle_content"]').eq(0).children().eq(3).should($div => {
+    cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(3).should($div => {
       expect($div).to.have.text("tail");
     });
     cy.get(CIRCLE_SELECTOR).each($circle => {
