@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RadioInput } from "../ui/radio-input/radio-input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Button } from "../ui/button/button";
@@ -22,6 +22,12 @@ export const SortingPage: React.FC = () => {
     []
   );
   const [sortType, setSortType] = useState<sortTypeEn>(sortTypeEn.selection);
+
+  useEffect(()=> {
+    setSortingArr(
+      randomArr(3, 17, 0, 100).map((el) => [el, ElementStates.Default])
+    );
+  }, []);
 
   const sortArr = async (direction: Direction) => {
     if (sortType === sortTypeEn.bubble) {

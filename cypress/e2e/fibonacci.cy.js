@@ -2,7 +2,7 @@ import { APP_ADDRESS, CIRCLE_SELECTOR } from "../utils/constants";
 
 describe("страница c последовательностью Фибоначчи работает правильно", function () {
   beforeEach(() => {
-    cy.visit(APP_ADDRESS + "/fibonacci");
+    cy.visit("fibonacci");
   });
 
   it("кнопка запуска недоступна при отсутствии текста", function () {

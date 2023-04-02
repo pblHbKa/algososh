@@ -1,8 +1,8 @@
-import { APP_ADDRESS, CIRCLE_CONTENT_SELECTOR, CIRCLE_SELECTOR } from "../utils/constants";
+import { APP_ADDRESS, CIRCLE_CHANGE_MATCH, CIRCLE_CONTENT_SELECTOR, CIRCLE_DEFAULT_MATCH, CIRCLE_SELECTOR } from "../utils/constants";
 
 describe("страница c очередью работает правильно", function () {
   beforeEach(() => {
-    cy.visit(APP_ADDRESS + "/queue");
+    cy.visit("queue");
   });
 
   it("кнопка запуска недоступна при отсутствии текста", function () {
@@ -16,7 +16,7 @@ describe("страница c очередью работает правильн�
     cy.contains("Добавить").click();
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[0].className).to.match(/circle_changing/);
+      expect(circles[0].className).to.match(CIRCLE_CHANGE_MATCH);
       expect(circles[0]).to.have.text(1);
     });
     cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
@@ -27,20 +27,20 @@ describe("страница c очередью работает правильн�
     });
     cy.wait(500);
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[0].className).to.match(/circle_default/);
+      expect(circles[0].className).to.match(CIRCLE_DEFAULT_MATCH);
     });
 
     cy.get("input").type(2);
     cy.contains("Добавить").click();
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[1].className).to.match(/circle_changing/);
-      expect(circles[0].className).to.match(/circle_default/);
+      expect(circles[1].className).to.match(CIRCLE_CHANGE_MATCH);
+      expect(circles[0].className).to.match(CIRCLE_DEFAULT_MATCH);
       expect(circles[1]).to.have.text(2);
     });
     cy.wait(500);
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[1].className).to.match(/circle_default/);
+      expect(circles[1].className).to.match(CIRCLE_DEFAULT_MATCH);
     });
     cy.get(CIRCLE_CONTENT_SELECTOR).eq(0).children().eq(0).should($div => {
       expect($div).to.have.text("head");
@@ -59,7 +59,7 @@ describe("страница c очередью работает правильн�
     cy.contains("Удалить").click();
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[1].className).to.match(/circle_default/);
+      expect(circles[1].className).to.match(CIRCLE_DEFAULT_MATCH);
     });
     cy.get(CIRCLE_CONTENT_SELECTOR).eq(1).children().eq(0).should($div => {
       expect($div).to.have.text("head");

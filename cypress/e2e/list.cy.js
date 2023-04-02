@@ -1,8 +1,8 @@
-import { APP_ADDRESS, CIRCLE_CONTENT_SELECTOR, CIRCLE_SELECTOR } from "../utils/constants";
+import { APP_ADDRESS, CIRCLE_CHANGE_MATCH, CIRCLE_CONTENT_SELECTOR, CIRCLE_MODIFIED_MATCH, CIRCLE_SELECTOR } from "../utils/constants";
 
 describe("страница cо списком работает правильно", function () {
   beforeEach(() => {
-    cy.visit(APP_ADDRESS + "/list");
+    cy.visit("list");
   });
 
   it("кнопка запуска недоступна при отсутствии текста", function () {
@@ -41,7 +41,7 @@ describe("страница cо списком работает правильн�
     cy.wait(1000);
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[0].className).to.match(/circle_modified/);
+      expect(circles[0].className).to.match(CIRCLE_MODIFIED_MATCH);
       expect(circles[0]).to.have.text(el);
     });
     
@@ -63,7 +63,7 @@ describe("страница cо списком работает правильн�
     cy.wait(1000);
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[initSize].className).to.match(/circle_modified/);
+      expect(circles[initSize].className).to.match(CIRCLE_MODIFIED_MATCH);
       expect(circles[initSize]).to.have.text(el);
     });
     
@@ -86,7 +86,7 @@ describe("страница cо списком работает правильн�
     cy.wait(1000);
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[index].className).to.match(/circle_modified/);
+      expect(circles[index].className).to.match(CIRCLE_MODIFIED_MATCH);
       expect(circles[index]).to.have.text(el);
     });
     
@@ -96,7 +96,7 @@ describe("страница cо списком работает правильн�
     cy.contains("Удалить из head").click();
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[0].className).to.match(/circle_changing/);
+      expect(circles[0].className).to.match(CIRCLE_CHANGE_MATCH);
     });
 
     cy.wait(1000);
@@ -120,7 +120,7 @@ describe("страница cо списком работает правильн�
     cy.contains("Удалить из tail").click();
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[3].className).to.match(/circle_changing/);
+      expect(circles[3].className).to.match(CIRCLE_CHANGE_MATCH);
     });
 
     cy.wait(1000);
@@ -145,7 +145,7 @@ describe("страница cо списком работает правильн�
     cy.wait(1000*(index+1));
 
     cy.get(CIRCLE_SELECTOR).then((circles) => {
-      expect(circles[index].className).to.match(/circle_changing/);
+      expect(circles[index].className).to.match(CIRCLE_CHANGE_MATCH);
     });
 
     cy.get(CIRCLE_CONTENT_SELECTOR).eq(index).should($div => {
