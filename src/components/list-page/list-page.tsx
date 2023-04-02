@@ -193,13 +193,12 @@ export const ListPage: React.FC = () => {
           disabled={inputLetter.length === 0 || inputIndex > listArr.length - 1 || inputIndex < 0}
         />
       </div>
-      <div className={styles.circleBox}>
+      <ul className={styles.circleBox}>
         {listArr.map((el, index) => (
-          <>
+          <li key={index} className={styles.circleEl}>
             <Circle
               letter={deleteElFound && index === deleteIndex ? "" : el}
               index={index}
-              key={index}
               head={
                 index === addIndex ? (
                   <Circle
@@ -238,7 +237,6 @@ export const ListPage: React.FC = () => {
             />
             {index !== list.getSize() - 1 && (
               <svg
-                key={`svg_${index}`}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -252,10 +250,10 @@ export const ListPage: React.FC = () => {
                   fill="#0032FF"
                 ></path>
               </svg>
-            )}{" "}
-          </>
+            )}
+            </li>
         ))}
-      </div>
+      </ul>
     </SolutionLayout>
   );
 };
